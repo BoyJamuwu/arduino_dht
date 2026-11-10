@@ -1,0 +1,148 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Encabezado rojo con flecha de volver -->
+    <LinearLayout
+        android:id="@+id/headerSuperior"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#CC1D00"
+        android:paddingStart="8dp">
+
+        <TextView
+            android:id="@+id/btnVolverFlecha"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textColor="#FFFFFF"
+            android:textSize="56sp"
+            android:fontFamily="sans-serif-light"
+            android:includeFontPadding="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Volver al login" />
+
+    </LinearLayout>
+
+    <!-- Contenido desplazable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Qué hace el proyecto?"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#202124" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Este proyecto utiliza un Arduino UNO para supervisar la temperatura y la humedad del ambiente mediante un sensor DHT11. El sistema informa sobre las condiciones detectadas a través de tres LED y permite la comunicación con un celular mediante Bluetooth clásico."
+                android:textSize="16sp"
+                android:textColor="#424242"
+                android:lineSpacingExtra="4dp" />
+
+            <!-- Registro fotográfico del circuito -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Registro fotográfico"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#CC1D00" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Circuito del sistema de monitoreo ambiental."
+                android:textSize="14sp"
+                android:textColor="#757575" />
+
+            <!-- LA IMAGEN AHORA SÍ ESTÁ EN SU LUGAR CORRECTO -->
+            <ImageView
+                android:id="@+id/imgCircuito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="Fotografía del circuito Arduino con sensor DHT11 y LED"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sensor_bluethoot" />
+
+            <!-- SEGUNDA IMAGEN (Ejemplo: Detalle del sensor) -->
+            <ImageView
+                android:id="@+id/imgDetalleSensor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="Primer plano del sensor DHT11"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sensor_completo" /> <!-- ◄ Cambia por el nombre de tu segunda foto -->
+
+            <!-- TERCERA IMAGEN (Ejemplo: Conexiones Bluetooth) -->
+            <ImageView
+                android:id="@+id/imgConexionBluetooth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="Conexión del módulo HC-06"
+                android:scaleType="fitCenter"
+                android:src="@drawable/registro" />
+
+            <!-- Explicación del funcionamiento -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="¿Cómo funciona?"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#CC1D00" />
+
+            <!-- Navegación a la pantalla siguiente -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="4dp"
+                android:text="1. Medición: el DHT11 obtiene los valores de temperatura y humedad.\n\n2. LED rojo: indica una alerta de temperatura.\n\n3. LED azul: indica una alerta de humedad.\n\n4. LED verde: representa el estado normal del sistema o confirma la comunicación, según el programa del Arduino.\n\n5. Bluetooth: el módulo HC-06 permite intercambiar información con el celular. Cuando el Arduino recibe el carácter A, el LED verde parpadea como confirmación."
+                android:textColor="#424242"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnSiguiente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:text="Siguiente"
+                android:textAllCaps="false"
+                android:backgroundTint="#801336"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
