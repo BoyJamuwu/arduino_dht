@@ -1,8 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Test" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Tema claro fijo: la app no cambia a modo oscuro -->
+    <style name="Base.Theme.Test" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/acento</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/acento_suave</item>
+        <item name="colorOnPrimaryContainer">@color/acento_oscuro</item>
+        <item name="colorSecondary">@color/temp</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorSurface">@color/superficie</item>
+        <item name="colorOnSurface">@color/tinta</item>
+        <item name="colorOnSurfaceVariant">@color/tinta_2</item>
+        <item name="colorOutline">@color/borde</item>
+        <item name="android:colorBackground">@color/fondo</item>
+        <item name="android:windowBackground">@color/fondo</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
     <style name="Theme.Test" parent="Base.Theme.Test" />

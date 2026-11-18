@@ -2,20 +2,18 @@ package com.example.test
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    override val requiereSesion = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        configurarPantalla(R.layout.activity_main)
 
-        val btnContinuar = findViewById<Button>(R.id.btnContinuar)
-
-        btnContinuar.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        findViewById<View>(R.id.btnContinuar).setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }

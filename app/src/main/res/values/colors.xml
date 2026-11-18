@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Paleta "laboratorio": papel cálido + petróleo + señales -->
+    <color name="fondo">#F2EFE9</color>
+    <color name="superficie">#FFFFFF</color>
+    <color name="superficie_alt">#F8F6F2</color>
+    <color name="borde">#E3DED4</color>
+
+    <color name="tinta">#15181C</color>
+    <color name="tinta_2">#4B5159</color>
+    <color name="tinta_3">#80858C</color>
+
+    <color name="acento">#0F4C5C</color>
+    <color name="acento_oscuro">#0A3640</color>
+    <color name="acento_suave">#E1EDEE</color>
+    <color name="acento_claro">#9CC3C9</color>
+    <color name="acento_deshabilitado">#B9CBCF</color>
+
+    <!-- Series de datos -->
+    <color name="temp">#C2410C</color>
+    <color name="temp_suave">#FBEADF</color>
+    <color name="hum">#1F6FA8</color>
+    <color name="hum_suave">#E3EEF7</color>
+
+    <!-- Estados (reservados, siempre acompañados de texto) -->
+    <color name="ok">#2E7D32</color>
+    <color name="ok_suave">#E5F2E6</color>
+    <color name="alerta">#B26A00</color>
+    <color name="alerta_suave">#FBF0DC</color>
+    <color name="error">#B3261E</color>
+    <color name="error_suave">#FBE4E2</color>
+
+    <!-- Terminal de mensajes -->
+    <color name="terminal_fondo">#16191D</color>
+    <color name="terminal_texto">#D3E3E0</color>
+    <color name="terminal_tenue">#7C8B89</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

@@ -1,36 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="@color/fondo"
+    android:orientation="vertical">
 
-    <!-- Encabezado rojo con flecha de volver -->
-    <LinearLayout
-        android:id="@+id/headerSuperior"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="#CC1D00"
-        android:paddingStart="8dp">
+    <include layout="@layout/view_header" />
 
-        <TextView
-            android:id="@+id/btnVolverFlecha"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:gravity="center"
-            android:text="‹"
-            android:textColor="#FFFFFF"
-            android:textSize="56sp"
-            android:fontFamily="sans-serif-light"
-            android:includeFontPadding="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="Volver al login" />
-
-    </LinearLayout>
-
-    <!-- Contenido desplazable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,108 +19,452 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingStart="@dimen/margen_pantalla"
+            android:paddingTop="8dp"
+            android:paddingEnd="@dimen/margen_pantalla"
+            android:paddingBottom="@dimen/margen_pantalla">
 
             <TextView
+                style="@style/Texto.Titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Qué hace el proyecto?"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="#202124" />
+                android:text="¿Qué hace el proyecto?" />
 
             <TextView
+                style="@style/Texto.Subtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Un Arduino UNO supervisa la temperatura y la humedad del ambiente con un sensor DHT11. El sistema informa las condiciones mediante tres LED y se comunica con el celular por Bluetooth clásico." />
+
+            <TextView
+                style="@style/Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:text="Registro fotográfico" />
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Este proyecto utiliza un Arduino UNO para supervisar la temperatura y la humedad del ambiente mediante un sensor DHT11. El sistema informa sobre las condiciones detectadas a través de tres LED y permite la comunicación con un celular mediante Bluetooth clásico."
-                android:textSize="16sp"
-                android:textColor="#424242"
-                android:lineSpacingExtra="4dp" />
+                app:cardBackgroundColor="@color/superficie"
+                app:cardCornerRadius="@dimen/radio_tarjeta"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/borde"
+                app:strokeWidth="1dp">
 
-            <!-- Registro fotográfico del circuito -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Registro fotográfico"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#CC1D00" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Circuito del sistema de monitoreo ambiental."
-                android:textSize="14sp"
-                android:textColor="#757575" />
+                    <ImageView
+                        android:id="@+id/imgCircuito"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Fotografía del circuito Arduino con sensor DHT11 y LED"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/sensor_bluethoot" />
 
-            <!-- LA IMAGEN AHORA SÍ ESTÁ EN SU LUGAR CORRECTO -->
-            <ImageView
-                android:id="@+id/imgCircuito"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="Fotografía del circuito Arduino con sensor DHT11 y LED"
-                android:scaleType="fitCenter"
-                android:src="@drawable/sensor_bluethoot" />
+                    <TextView
+                        style="@style/Texto.Etiqueta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="14dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="14dp"
+                        android:paddingBottom="12dp"
+                        android:text="Circuito completo del sistema de monitoreo." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <!-- SEGUNDA IMAGEN (Ejemplo: Detalle del sensor) -->
-            <ImageView
-                android:id="@+id/imgDetalleSensor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="Primer plano del sensor DHT11"
-                android:scaleType="fitCenter"
-                android:src="@drawable/sensor_completo" /> <!-- ◄ Cambia por el nombre de tu segunda foto -->
-
-            <!-- TERCERA IMAGEN (Ejemplo: Conexiones Bluetooth) -->
-            <ImageView
-                android:id="@+id/imgConexionBluetooth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="Conexión del módulo HC-06"
-                android:scaleType="fitCenter"
-                android:src="@drawable/registro" />
-
-            <!-- Explicación del funcionamiento -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="¿Cómo funciona?"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#CC1D00" />
-
-            <!-- Navegación a la pantalla siguiente -->
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:lineSpacingExtra="4dp"
-                android:text="1. Medición: el DHT11 obtiene los valores de temperatura y humedad.\n\n2. LED rojo: indica una alerta de temperatura.\n\n3. LED azul: indica una alerta de humedad.\n\n4. LED verde: representa el estado normal del sistema o confirma la comunicación, según el programa del Arduino.\n\n5. Bluetooth: el módulo HC-06 permite intercambiar información con el celular. Cuando el Arduino recibe el carácter A, el LED verde parpadea como confirmación."
-                android:textColor="#424242"
-                android:textSize="16sp" />
+                app:cardBackgroundColor="@color/superficie"
+                app:cardCornerRadius="@dimen/radio_tarjeta"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/borde"
+                app:strokeWidth="1dp">
 
-            <Button
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgDetalleSensor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Primer plano del sensor DHT11"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/sensor_completo" />
+
+                    <TextView
+                        style="@style/Texto.Etiqueta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="14dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="14dp"
+                        android:paddingBottom="12dp"
+                        android:text="Detalle del sensor DHT11." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/superficie"
+                app:cardCornerRadius="@dimen/radio_tarjeta"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/borde"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgConexionBluetooth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Conexión del módulo HC-06"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/registro" />
+
+                    <TextView
+                        style="@style/Texto.Etiqueta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="14dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="14dp"
+                        android:paddingBottom="12dp"
+                        android:text="Conexión del módulo Bluetooth HC-06." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                style="@style/Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:text="¿Cómo funciona?" />
+
+            <LinearLayout
+                style="@style/Tarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_badge"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="01"
+                        android:textColor="@color/acento"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Medición"
+                                android:textColor="@color/tinta"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Texto.Cuerpo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="El DHT11 obtiene la temperatura y la humedad del interior de la caja."
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_badge"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="02"
+                        android:textColor="@color/acento"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/bg_dot"
+                                android:backgroundTint="#D93025" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="LED rojo"
+                                android:textColor="@color/tinta"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Texto.Cuerpo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Se enciende cuando la temperatura sale del rango configurado."
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_badge"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="03"
+                        android:textColor="@color/acento"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/bg_dot"
+                                android:backgroundTint="#1F6FA8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="LED azul"
+                                android:textColor="@color/tinta"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Texto.Cuerpo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Se enciende cuando la humedad sale del rango configurado."
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_badge"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="04"
+                        android:textColor="@color/acento"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/bg_dot"
+                                android:backgroundTint="#2E7D32" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="LED verde"
+                                android:textColor="@color/tinta"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Texto.Cuerpo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Indica estado normal o confirma la comunicación con el celular."
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_badge"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="05"
+                        android:textColor="@color/acento"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Bluetooth"
+                                android:textColor="@color/tinta"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Texto.Cuerpo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="El HC-06 envía las lecturas al celular. Al recibir el carácter A, el LED verde parpadea como confirmación."
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSiguiente"
+                style="@style/Boton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                android:text="Siguiente"
-                android:textAllCaps="false"
-                android:backgroundTint="#801336"
-                android:textColor="#FFFFFF"/>
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:text="Ver el sensor" />
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

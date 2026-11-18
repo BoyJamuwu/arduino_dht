@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Escala de espaciado única: 4 / 8 / 12 / 16 / 20 / 28 -->
+    <dimen name="margen_pantalla">20dp</dimen>
+    <dimen name="padding_tarjeta">16dp</dimen>
+    <dimen name="separacion">12dp</dimen>
+    <dimen name="separacion_chica">8dp</dimen>
+    <dimen name="separacion_seccion">28dp</dimen>
+    <dimen name="radio_tarjeta">16dp</dimen>
+    <dimen name="alto_boton">56dp</dimen>
+</resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===== Tipografía ===== -->
+    <style name="Texto" parent="" />
+
+    <style name="Texto.Eyebrow">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/acento</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.14</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Texto.Titulo">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/tinta</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="Texto.Subtitulo">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/tinta_2</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="Texto.Seccion">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/tinta_3</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.12</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Texto.Cuerpo">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/tinta_2</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="Texto.Etiqueta">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/tinta_2</item>
+    </style>
+
+    <style name="Texto.Lectura">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/tinta</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.04</item>
+    </style>
+
+    <style name="Texto.Dato">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/tinta</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+
+    <style name="Texto.Celda">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/tinta</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
+    <!-- ===== Contenedores ===== -->
+    <style name="Tarjeta" parent="">
+        <item name="android:background">@drawable/bg_card</item>
+        <item name="android:padding">@dimen/padding_tarjeta</item>
+    </style>
+
+    <!-- ===== Botones ===== -->
+    <style name="Boton" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/alto_boton</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="backgroundTint">@color/btn_primario_bg</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="BotonSecundario" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/alto_boton</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="strokeColor">@color/btn_secundario_borde</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/btn_secundario_texto</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="BotonSecundario.Peligro">
+        <item name="strokeColor">@color/btn_peligro_borde</item>
+        <item name="android:textColor">@color/btn_peligro_texto</item>
+    </style>
+
+    <!-- ===== Campos de texto ===== -->
+    <style name="Campo" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/acento</item>
+        <item name="boxBackgroundColor">@color/superficie</item>
+        <item name="hintTextColor">@color/acento</item>
+    </style>
+
+</resources>

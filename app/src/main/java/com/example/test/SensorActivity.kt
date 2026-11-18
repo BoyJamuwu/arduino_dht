@@ -1,97 +1,55 @@
-
 package com.example.test
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.LinearLayout
+import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class SensorActivity : AppCompatActivity() {
+class SensorActivity : BaseActivity() {
 
-    private lateinit var tvTemperaturaActual: TextView
-    private lateinit var tvHumedadActual: TextView
+    private lateinit var tvTemperatura: TextView
+    private lateinit var tvHumedad: TextView
+    private lateinit var tvActualizado: TextView
+
+    private val formatoHora = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+
+    private val oyente = object : BluetoothManager.Oyente {
+        override fun onLectura(lectura: Lectura) = mostrar(lectura)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sensor)
+        configurarPantalla(R.layout.activity_sensor, "03 · Sensor")
 
-        // Referencias a los valores de los sensores
-        tvTemperaturaActual =
-            findViewById(R.id.tvTemperaturaActual)
+        tvTemperatura = findViewById(R.id.tvTemperatura)
+        tvHumedad = findViewById(R.id.tvHumedad)
+        tvActualizado = findViewById(R.id.tvActualizado)
 
-        tvHumedadActual =
-            findViewById(R.id.tvHumedadActual)
-
-        // Ajustar el encabezado para respetar la barra de estado
-        val header = findViewById<LinearLayout>(R.id.headerSuperior)
-        val altoBase = (64 * resources.displayMetrics.density).toInt()
-
-        ViewCompat.setOnApplyWindowInsetsListener(header) { view, insets ->
-
-            val altoBarraEstado =
-                insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
-
-            view.setPadding(
-                view.paddingLeft,
-                altoBarraEstado,
-                view.paddingRight,
-                view.paddingBottom
-            )
-
-            view.layoutParams = view.layoutParams.apply {
-                height = altoBase + altoBarraEstado
-            }
-
-            insets
+        findViewById<View>(R.id.btnControl).setOnClickListener {
+            startActivity(Intent(this, ControlActivity::class.java))
         }
-
-        ViewCompat.requestApplyInsets(header)
-
-        // Volver a la pantalla anterior
-        findViewById<TextView>(R.id.btnVolverFlecha).setOnClickListener {
-            finish()
-        }
-
-        // Avanzar a la pantalla de control remoto
-        findViewById<Button>(R.id.btnControl).setOnClickListener {
-            val intent = Intent(this, ControlActivity::class.java)
-            startActivity(intent)
+        findViewById<View>(R.id.btnHistorial).setOnClickListener {
+            startActivity(Intent(this, HistorialActivity::class.java))
         }
     }
 
     override fun onResume() {
         super.onResume()
-
-        // Mostrar los últimos valores guardados
-        actualizarValores()
-
-        // Recibir nuevas lecturas mientras esta pantalla esté activa
-        BluetoothManager.setMessageListener {
-            runOnUiThread {
-                actualizarValores()
-            }
-        }
+        BluetoothManager.ultimaLectura?.let { mostrar(it) }
+        BluetoothManager.agregarOyente(oyente)
     }
 
     override fun onPause() {
         super.onPause()
-
-        // Dejar de actualizar esta pantalla al salir de ella
-        BluetoothManager.clearMessageListener()
+        BluetoothManager.quitarOyente(oyente)
     }
 
-    private fun actualizarValores() {
-
-        BluetoothManager.lastTemperature?.let {
-            tvTemperaturaActual.text = "$it °C"
-        }
-
-        BluetoothManager.lastHumidity?.let {
-            tvHumedadActual.text = "$it %"
-        }
+    private fun mostrar(lectura: Lectura) {
+        tvTemperatura.text = String.format(Locale.US, "%.1f", lectura.temperatura)
+        tvHumedad.text = String.format(Locale.US, "%.1f", lectura.humedad)
+        tvActualizado.text = "Act. ${formatoHora.format(Date(lectura.fechaMs))}"
     }
 }

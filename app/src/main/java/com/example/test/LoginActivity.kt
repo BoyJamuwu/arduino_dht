@@ -1,90 +1,85 @@
-
 package com.example.test
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.button.MaterialButton
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
+
+    override val requiereSesion = false
+
+    private lateinit var etUsuario: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var btnIngresar: MaterialButton
+    private lateinit var tvAviso: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        configurarPantalla(R.layout.activity_login, "01 · Acceso")
 
-        // Encabezado rojo y ajuste de la barra de estado
-        val header = findViewById<LinearLayout>(R.id.headerSuperior)
-        val altoBase = (64 * resources.displayMetrics.density).toInt()
+        etUsuario = findViewById(R.id.etUsuario)
+        etPassword = findViewById(R.id.etPassword)
+        btnIngresar = findViewById(R.id.btnIngresar)
+        tvAviso = findViewById(R.id.tvAvisoLogin)
 
-        ViewCompat.setOnApplyWindowInsetsListener(header) { view, insets ->
+        btnIngresar.setOnClickListener { intentarIngreso() }
+    }
 
-            val altoBarraEstado =
-                insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+    private fun intentarIngreso() {
+        val usuario = etUsuario.text.toString().trim()
 
-            view.setPadding(
-                view.paddingLeft,
-                altoBarraEstado,
-                view.paddingRight,
-                view.paddingBottom
-            )
+        // Se copia la contraseña a un CharArray para poder borrarla de memoria
+        val editable = etPassword.text
+        val password = CharArray(editable?.length ?: 0) { editable!![it] }
+        etPassword.text?.clear()
 
-            view.layoutParams = view.layoutParams.apply {
-                height = altoBase + altoBarraEstado
+        if (usuario.isEmpty() || password.isEmpty()) {
+            mostrarAviso("Completa usuario y contraseña.")
+            return
+        }
+
+        btnIngresar.isEnabled = false
+        btnIngresar.text = "Verificando…"
+
+        // PBKDF2 es lento a propósito: se ejecuta fuera del hilo principal
+        Thread {
+            val resultado = Autenticacion.validar(applicationContext, usuario, password)
+
+            runOnUiThread {
+                btnIngresar.isEnabled = true
+                btnIngresar.text = "Ingresar"
+
+                when (resultado) {
+                    is Autenticacion.Resultado.Correcto -> {
+                        tvAviso.visibility = View.GONE
+                        Sesion.iniciar()
+                        startActivity(Intent(this, ExplicacionActivity::class.java))
+                    }
+
+                    is Autenticacion.Resultado.Incorrecto ->
+                        mostrarAviso(
+                            "Usuario o contraseña incorrectos. " +
+                                "Intentos restantes: ${resultado.intentosRestantes}."
+                        )
+
+                    is Autenticacion.Resultado.Bloqueado ->
+                        mostrarAviso(
+                            "Acceso bloqueado por intentos fallidos. " +
+                                "Espera ${formatoEspera(resultado.segundos)}."
+                        )
+                }
             }
+        }.start()
+    }
 
-            insets
-        }
+    private fun formatoEspera(segundos: Long): String =
+        if (segundos >= 60) "${(segundos + 59) / 60} min" else "$segundos s"
 
-        ViewCompat.requestApplyInsets(header)
-
-        // Botón de volver
-        val btnVolverFlecha =
-            findViewById<TextView>(R.id.btnVolverFlecha)
-
-        btnVolverFlecha.setOnClickListener {
-            finish()
-        }
-
-        // Campos del formulario
-        val etUsuario = findViewById<EditText>(R.id.etUsuario)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
-        val btnIngresar = findViewById<Button>(R.id.btnIngresar)
-
-        // Validación de las credenciales
-        btnIngresar.setOnClickListener {
-
-            val usuario = etUsuario.text.toString().trim()
-            val password = etPassword.text.toString()
-
-            if (usuario == "admin" && password == "Admin123") {
-
-                Toast.makeText(
-                    this,
-                    "Acceso correcto",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                val intent = Intent(
-                    this,
-                    ExplicacionActivity::class.java
-                )
-
-                startActivity(intent)
-
-            } else {
-
-                Toast.makeText(
-                    this,
-                    "Usuario o contraseña incorrectos",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
+    private fun mostrarAviso(texto: String) {
+        tvAviso.text = texto
+        tvAviso.visibility = View.VISIBLE
     }
 }

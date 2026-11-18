@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/raiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margen_pantalla"
+            android:paddingTop="8dp"
+            android:paddingEnd="@dimen/margen_pantalla"
+            android:paddingBottom="@dimen/margen_pantalla">
+
+            <TextView
+                style="@style/Texto.Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Historial" />
+
+            <TextView
+                style="@style/Texto.Subtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mientras hay conexión se guarda un registro cada 5 minutos (promedio de las lecturas válidas)." />
+
+            <!-- Resumen de la base de datos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/vPuntoIntegridad"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/bg_dot"
+                    android:backgroundTint="@color/tinta_3" />
+
+                <TextView
+                    android:id="@+id/tvResumen"
+                    style="@style/Texto.Etiqueta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Verificando base de datos…" />
+            </LinearLayout>
+
+            <!-- Gráfico de temperatura -->
+            <TextView
+                style="@style/Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:text="Temperatura · °C"
+                android:textColor="@color/temp" />
+
+            <FrameLayout
+                style="@style/Tarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <com.example.test.GraficoLineaView
+                    android:id="@+id/graficoTemperatura"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp" />
+            </FrameLayout>
+
+            <!-- Gráfico de humedad -->
+            <TextView
+                style="@style/Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Humedad · %"
+                android:textColor="@color/hum" />
+
+            <FrameLayout
+                style="@style/Tarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <com.example.test.GraficoLineaView
+                    android:id="@+id/graficoHumedad"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp" />
+            </FrameLayout>
+
+            <!-- Tabla -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Texto.Seccion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Registros" />
+
+                <TextView
+                    android:id="@+id/tvMostrando"
+                    style="@style/Texto.Etiqueta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/tinta_3"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical">
+
+                <!-- Encabezado de columnas -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="14dp"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        style="@style/Texto.Seccion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:text="#" />
+
+                    <TextView
+                        style="@style/Texto.Seccion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="Fecha" />
+
+                    <TextView
+                        style="@style/Texto.Seccion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="°C" />
+
+                    <TextView
+                        style="@style/Texto.Seccion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="HR %" />
+
+                    <TextView
+                        style="@style/Texto.Seccion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="end"
+                        android:text="Trama" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:id="@+id/contenedorFilas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tvVacio"
+                    style="@style/Texto.Etiqueta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:text="Aún no hay registros. Conéctate al Arduino y el primero se guardará al recibir la primera lectura."
+                    android:textColor="@color/tinta_3"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMostrarMas"
+                style="@style/BotonSecundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Mostrar más"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

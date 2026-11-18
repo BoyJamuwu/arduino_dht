@@ -1,102 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="0dp"
-    android:background="#FFFFFF">
+    android:background="@color/fondo"
+    android:orientation="vertical">
 
-    <!-- Encabezado superior -->
-    <LinearLayout
-        android:id="@+id/headerSuperior"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="#CC1D00"
-        android:paddingStart="8dp">
+    <include layout="@layout/view_header" />
 
-        <TextView
-            android:id="@+id/btnVolverFlecha"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:gravity="center"
-            android:text="‹"
-            android:textColor="#FFFFFF"
-            android:textSize="56sp"
-            android:fontFamily="sans-serif-light"
-            android:includeFontPadding="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="Volver a la pantalla anterior" />
-
-    </LinearLayout>
-
-
-
-
-
-    <!-- Contenedor del formulario -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:paddingBottom="48dp">
+        android:fillViewport="true">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:gravity="center"
-            android:text="Control de acceso"
-            android:textColor="#202124"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margen_pantalla"
+            android:paddingTop="8dp"
+            android:paddingEnd="@dimen/margen_pantalla"
+            android:paddingBottom="@dimen/margen_pantalla">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingresa tus credenciales para continuar"
-            android:textSize="14sp"
-            android:textColor="#757575"
-            android:gravity="center"
-            android:layout_marginBottom="32dp" />
+            <TextView
+                style="@style/Texto.Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Control de acceso" />
 
-        <EditText
-            android:id="@+id/etUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Usuario"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="23dp"
-            android:backgroundTint="#2d142C"
-            android:textColor="#000000" />
+            <TextView
+                style="@style/Texto.Subtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ingresa tus credenciales de operador para acceder al monitoreo." />
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:padding="24dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#2d142C"
-            android:textColor="#000000"/>
+            <LinearLayout
+                style="@style/Tarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <Button
-            android:id="@+id/btnIngresar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingresar"
-            android:textAllCaps="false"
-            android:layout_marginTop="18dp"
-            android:backgroundTint="#801336"
-            android:textColor="#FFFFFF"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Campo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Usuario">
 
-    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLength="32"
+                        android:maxLines="1"
+                        android:textColor="@color/tinta" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Campo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/separacion"
+                    android:hint="Contraseña"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:maxLength="64"
+                        android:maxLines="1"
+                        android:textColor="@color/tinta" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvAvisoLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/separacion"
+                    android:background="@drawable/bg_aviso"
+                    android:padding="12dp"
+                    android:textColor="@color/alerta"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnIngresar"
+                    style="@style/Boton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Ingresar" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Texto.Etiqueta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Tras 5 intentos fallidos el acceso se bloquea temporalmente. La sesión se cierra tras 10 minutos sin actividad."
+                android:textColor="@color/tinta_3" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

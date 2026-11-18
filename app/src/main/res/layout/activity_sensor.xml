@@ -1,256 +1,221 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:fillViewport="true">
+    android:background="@color/fondo"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/view_header" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- Encabezado rojo -->
-        <LinearLayout
-            android:id="@+id/headerSuperior"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="#CC1D00"
-            android:paddingStart="8dp">
-
-            <TextView
-                android:id="@+id/btnVolverFlecha"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:gravity="center"
-                android:text="‹"
-                android:textColor="#FFFFFF"
-                android:textSize="56sp"
-                android:fontFamily="sans-serif-light"
-                android:includeFontPadding="false"
-                android:clickable="true"
-                android:focusable="true"
-                android:contentDescription="Volver a la explicación del proyecto" />
-
-        </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingStart="@dimen/margen_pantalla"
+            android:paddingTop="8dp"
+            android:paddingEnd="@dimen/margen_pantalla"
+            android:paddingBottom="@dimen/margen_pantalla">
 
-            <!-- Título -->
             <TextView
+                style="@style/Texto.Titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sensor DHT11"
-                android:textColor="#202124"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:text="Sensor DHT11" />
 
             <TextView
+                style="@style/Texto.Subtitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:lineSpacingExtra="3dp"
-                android:text="Información técnica y parámetros de monitoreo ambiental."
-                android:textColor="#424242"
-                android:textSize="15sp" />
-
-            <!-- Valores configurados -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="Valores configurados"
-                android:textColor="#CC1D00"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="#F5F5F5"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Temperatura deseada"
-                    android:textColor="#424242"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="25 °C"
-                    android:textColor="#202124"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#DDDDDD" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Margen de temperatura"
-                    android:textColor="#424242"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="± 2 °C"
-                    android:textColor="#202124"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#DDDDDD" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Humedad deseada"
-                    android:textColor="#424242"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="50 %"
-                    android:textColor="#202124"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#DDDDDD" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Margen de humedad"
-                    android:textColor="#424242"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="± 10 %"
-                    android:textColor="#202124"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
+                android:text="Parámetros de monitoreo y última lectura recibida." />
 
             <!-- Lecturas actuales -->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="Lecturas actuales"
-                android:textColor="#CC1D00"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Texto.Seccion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Lectura actual" />
+
+                <TextView
+                    android:id="@+id/tvActualizado"
+                    style="@style/Texto.Etiqueta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="Sin datos"
+                    android:textColor="@color/tinta_3"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <include
+                layout="@layout/view_lecturas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" />
+
+            <!-- Parámetros configurados -->
+            <TextView
+                style="@style/Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_seccion"
+                android:text="Parámetros configurados" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:orientation="horizontal">
+                android:background="@drawable/bg_card"
+                android:orientation="vertical">
 
-                <!-- Tarjeta de temperatura -->
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="1"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Temperatura"
-                        android:textColor="#424242"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_tarjeta">
 
-                    <TextView
-                        android:id="@+id/tvTemperaturaActual"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            style="@style/Texto.Etiqueta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temperatura objetivo" />
+
+                        <TextView
+                            style="@style/Texto.Dato"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="25 °C" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/borde" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="-- °C"
-                        android:textColor="#CC1D00"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_tarjeta">
 
+                        <TextView
+                            style="@style/Texto.Etiqueta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Margen" />
+
+                        <TextView
+                            style="@style/Texto.Dato"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="± 2 °C" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <!-- Tarjeta de humedad -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/borde" />
+
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="6dp"
-                    android:layout_weight="1"
-                    android:background="#F5F5F5"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Humedad"
-                        android:textColor="#424242"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_tarjeta">
 
-                    <TextView
-                        android:id="@+id/tvHumedadActual"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            style="@style/Texto.Etiqueta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Humedad objetivo" />
+
+                        <TextView
+                            style="@style/Texto.Dato"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="50 %" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/borde" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="-- %"
-                        android:textColor="#CC1D00"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_tarjeta">
 
+                        <TextView
+                            style="@style/Texto.Etiqueta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Margen" />
+
+                        <TextView
+                            style="@style/Texto.Dato"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="± 10 %" />
+                    </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
 
-            <!-- Botón siguiente -->
-            <Button
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/separacion_seccion" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnControl"
+                style="@style/Boton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="#801336"
-                android:text="Ir al control remoto"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+                android:text="Ir al control remoto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHistorial"
+                style="@style/BotonSecundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/separacion_chica"
+                android:text="Ver historial de registros" />
 
         </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
